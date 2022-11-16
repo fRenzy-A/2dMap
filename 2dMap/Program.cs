@@ -18,10 +18,13 @@ namespace _2dMap
             Console.ReadKey(true);
             
         }
-        
-        
-        static string[,] map = new string[,] // dimensions defined by following data:
-        {   { G , M , G , G , G , G , G , G , G , G , M , M , M , G , G},
+
+        static char G = '*'; // Ground
+        static char M = '^'; // Cliff/Mountain
+        static char V = '~'; // Water
+        static char[,] map = new char[,] // dimensions defined by following data:
+        {   
+            { G , M , G , G , G , G , G , G , G , G , M , M , M , G , G},
             { M , M , G , G , G , G , G , G , G , G , M , M , M , G , G},
             { G , G , V , V , G , G , G , G , G , G , M , M , M , G , G},
             { G , G , V , V , G , G , G , G , G , G , V , V , V , V , G},
@@ -29,12 +32,10 @@ namespace _2dMap
             { G , G , G , G , G , G , G , G , G , G , G , G , G , G , G},
             { G , G , G , G , G , G , G , G , G , G , G , G , G , G , G}
         };
-        /*static string G = "*"; // Ground
-        static string M = "^"; // Cliff/Mountain
-        static string V = "~"; // Water*/
 
-        static string[] legend = { "*", "^", "~" };
-        static string[0] 
+        /*static string[] legend = { "*", "^", "~" };
+        static string[0];*/
+
         static void DisplayMap(int Scale)
         {
             int MapScale;
@@ -61,8 +62,29 @@ namespace _2dMap
                     {
                         for (int z = 0; z < MapScale; z++)
                         {
+                            foreach (char currentTile in map)
+                            {
+                                //var colors = Enum.GetValues(typeof(ConsoleColor)).Cast<ConsoleColor>().ToArray();
+                                /*if (currentTile == G)
+                                {
+                                    Console.ResetColor();
+                                    Console.BackgroundColor = ConsoleColor.Green;
+                                }*/
+                                if (currentTile == V)
+                                {
+                                    Console.ResetColor();
+                                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                }
+                                /*if (currentTile == M)
+                                {
+                                    Console.ResetColor();
+                                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                                }*/
+                         
+                            }
                             Console.Write(map[x, y]);
-                            
+
+
                         }
                         
                     }
@@ -76,7 +98,7 @@ namespace _2dMap
             {
                 Console.Write("O");
             }
-
+            
         }
 
         static void DisplayMap()
